@@ -10,8 +10,16 @@
     <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg">
         <h2 class="text-2xl font-bold mb-4">KPI Hisoblagich</h2>
 
-        <label class="block font-semibold mb-2">Oyliq ish kuni:</label>
-        <input type="number" id="workDays" value="22" class="border p-2 w-full mb-4" oninput="calculatePlan()">
+        <div class="grid grid-cols-2 gap-4 mb-4">
+            <div>
+                <label class="block font-semibold mb-2">Oyliq ish kuni:</label>
+                <input type="number" id="workDays" value="22" class="border p-2 w-full" oninput="calculatePlan()">
+            </div>
+            <div>
+                <label class="block font-semibold mb-2">KPI Summasi (so'm):</label>
+                <input type="number" id="kpiInput" value="4000000" class="border p-2 w-full" oninput="calculateKPI()">
+            </div>
+        </div>
 
         <table class="w-full border-collapse border text-center">
             <thead class="bg-gray-200">
@@ -80,12 +88,12 @@
             document.getElementById("percent3").innerText = percent3.toFixed(2) + "%";
 
             let totalFact = fact1 + fact2 + fact3;
-            let totalPercent = (percent1 + percent2 + percent3);
+            let totalPercent = percent1 + percent2 + percent3; // O'rtacha emas, yig'indisi
 
             document.getElementById("totalFact").innerText = totalFact;
             document.getElementById("totalPercent").innerText = totalPercent.toFixed(1) + "%";
 
-            let baseKPI = 4000000;
+            let baseKPI = parseInt(document.getElementById("kpiInput").value) || 4000000;
             let totalKPI = baseKPI;
 
             if (totalPercent < 80) {
